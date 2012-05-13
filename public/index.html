@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>SnakeTron!</title>
+	<script type="text/javascript" src="libs/mootools/mootools-core-1.4.5.js"></script>
+	<script type="text/javascript" src="libs/mootools/mootools-more-1.4.0.1.js"></script>
+	<script type="text/javascript" src="libs/handlebars.js"></script>
+	<!--<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>-->
+	<script src="libs/socket.io.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div class="container">
+		<div id="header">
+			<div style="position: relative;" id="tableHolder"></div>
+			<div id="logo">
+			</div>
+		</div>
+		<div class="snaketron" id="snaketron">
+
+		</div>
+	</div>
+
+	<script id="login-template" type="text/x-handlebars-template">
+		<div style="text-align: left; width: 83%; margin: 0 auto 46px auto;">
+			<h2>Welcome to Snaketron!</h2>
+			<p>The rules are simple. Snaketron is multiplayer Snake against a random opponent. Eat the green snacks to grow your snake and score. </p><p>The longer your snake is, the easier it is to trap your opponent into running into you and if you succeed in this (the game ends by your opponent running into you, not the wall), <strong style="color: #000;">your score will double</strong>. Now login and attack those leaderboards!</p>
+		</div>
+		<div class="row loginContainer">
+			<div class="span3">
+				<h4>New to Snaketon?</h4><br />
+				<input type="text" placeholder="Pick A Username" class="registerUsername" />
+				<br />
+				<input placeholder="Password" type="password" class="registerPassword"/>
+				<br />
+				<span style="text-shadow: 0px 1px 0px rgba(255,255,255,.8); display: none; font-size: 11px;" class='registerHelper'>Press "Enter" when ready</span>
+			</div>
+			<div class="span3">
+				<h4>Login</h4><br />
+				<input type="text" placeholder="Username" class="loginUsername" />
+				<br />
+				<input placeholder="Password" type="password" class="loginPassword"/>
+				<br />
+				<span style="text-shadow: 0px 1px 0px rgba(255,255,255,.8); display: none; font-size: 11px;" class='loginHelper'>Press "Enter" when ready</span>
+			</div>
+			<div class="span3 anonSpan">
+				or <a class='btn btn-primary btn-large' href='#'>Play Anonymously</a>
+			</div>
+		</div>
+	</script>
+
+	<script id="ready-template" type="text/x-handlebars-template">
+		<div style="text-align: center; width: 83%; margin: 0 auto 46px auto;">
+			<h3>Welcome, {{username}}</h3>
+			<br /><br />
+			<span class="btn btn-success randomOpponent">Play Random Opponent</span>
+			<span style="margin-left: 15px;"> or play against <input style="margin-top: 5px;" type="text" placeholder="Type Username" /></span>
+		</div>
+	</script>
+
+	<script id="gameOver-template" type="text/x-handlebars-template">
+		<div style="text-align: center; width: 83%; margin: 0 auto 46px auto;">
+			<h2>Game Over</h2>
+			<h3>{{winner}}</h3>
+			<br /><br />
+			<p>Press space to continue</p>
+		</div>
+	</script>
+
+	<script id="score-template" type="text/x-handlebars-template">
+		<table class="scoreTable">
+			<tr>
+				<td>Your Score</td>
+				<td>{{partnerUsername}}</td>
+			</tr>
+			<tr>
+				<td>{{myScore}}</td>
+				<td>{{partnerScore}}</td>
+			</tr>
+		</table>
+	</script>
+
+
+	<script>
+		var loginTemplate = Handlebars.compile($('login-template').get('html'));
+		var readyTemplate = Handlebars.compile($('ready-template').get('html'));
+		var gameOverTemplate = Handlebars.compile($('gameOver-template').get('html'));
+		var scoreTemplate = Handlebars.compile($('score-template').get('html'));
+	</script>
+</body>
+</html>

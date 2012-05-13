@@ -1,0 +1,91 @@
+.container{
+	text-align: center;
+}
+table.snaketronTable{
+	margin: 0 auto;
+	border: 2px solid #555;
+	padding-bottom: 1px;
+	box-shadow: 0 0 7px rgba(0,0,0,.2);
+}
+table.snaketronTable td{
+	background-color: #f6f6f6;
+	width: 8px;
+	height: 8px;
+	border: 1px solid white;	
+}
+
+div.snaketron{
+	position: relative;
+}
+
+#overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+	padding: 50px;
+}
+
+ul.login-list{
+	list-style: inline;
+}
+ul.login-list li{
+	list-style: inline;
+}
+
+#logo{
+	width: 160px;
+	height: 38px;
+	background-image: url('/images/logo.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	padding: 15px;
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+.loginContainer{
+	background: rgba(0,0,0,.1);
+	border: 2px solid #fff;
+	padding: 10px 60px;
+	margin-left: 0px;
+}
+
+.loginContainer h4{
+	text-shadow: 1px 1px 0px rgba(255,255,255,.6);
+}
+
+.loginContainer input[type="text"],.loginContainer input[type="password"]{
+	border: 1px solid #999;
+}
+
+.anonSpan{
+	padding: 50px 0 0 0;
+	margin-left: 0;
+}
+
+.anonSpan .btn{
+	margin-left: 15px;
+}
+
+.scoreTable{
+	position: absolute;
+	top 0;
+	right: 110px;
+}
+.scoreTable td.score{
+	font-size: 27px;
+	font-weight: bold;
+}
+.scoreTable td{
+	padding: 5px 15px;
+}
+
+.winning{
+	color: #379b15;
+}
+.losing{
+	color: #d12323;
+}

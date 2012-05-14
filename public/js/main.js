@@ -51,8 +51,8 @@ window.addEvent('domready', function(){
 		game.winner = winner;
 		game.setState('gameover');
 		game.activeGame = false;
-		if(game.iterateTimer)
-			clearInterval(game.iterateTimer);
+		if(this.iterateTimer)
+			clearInterval(this.iterateTimer);
 	});
 
 	socket.on('draw', function(){
@@ -140,8 +140,7 @@ var Snaketron = new Class({
 		*/
 	},
 	draw: function(){
-		//this.clearTails();
-		this.clearTable();
+		this.clearTails();
 		var that = this;
 		this.snakesArray().each(function(snake, index){
 			snake.points.each(function(point, index){

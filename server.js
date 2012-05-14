@@ -175,7 +175,7 @@ function connectPlayers(){
             position: 'left'
         });
         games[gameId].active = true;
-        iterateGame(gameId);
+        //iterateGame(gameId);
         sendSnacks(gameId);
     }
     else{

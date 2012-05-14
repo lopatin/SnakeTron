@@ -51,6 +51,8 @@ window.addEvent('domready', function(){
 		game.winner = winner;
 		game.setState('gameover');
 		game.activeGame = false;
+		if(game.iterateTimer)
+			clearInterval(game.iterateTimer);
 	});
 
 	socket.on('draw', function(){
@@ -287,6 +289,7 @@ var Snaketron = new Class({
 		this.partnerSnake.score = 0;
 		this.refreshScore();
 
+		this.iterateTimer = this.iterate.periodical(this.options.speed, this);
 		//this.iterate();
 	},
 	addDirection: function(directions, points){

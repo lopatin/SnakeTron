@@ -82,6 +82,7 @@ var Snaketron = new Class({
 		this.overlay.inject(this.container);
 
 		// Initialize table
+		/*
 		this.table = new Element('table', {class: 'snaketronTable'});
 		this.table.inject(this.container);
 
@@ -93,6 +94,10 @@ var Snaketron = new Class({
 			}
 			tr.inject(this.table);
 		}
+		*/
+
+		this.canvas = document.getElementById("gameCanvas");
+		this.ctx = this.canvas.getContext("2d");
 
 		// Create snakes
 		this.mainSnake = new Snake({
@@ -153,6 +158,24 @@ var Snaketron = new Class({
 	},
 	draw: function(redraw){
 		var startTime = (new Date()).getTime();
+
+		this.ctx.fillStyle = "#f6f6f6";
+		
+		for(var x = 0; x < 80; x++){
+			for(var y = 0; y < 40; y++){
+				this.ctx.fillRect(1+x*11, 1+y*11, 10, 10);
+			}
+		}
+
+		var that = this;
+		this.snakesArray().each(function(snake, index){
+			snake.points.each(function(point, index){
+				that.ctx.fillStyle = snake.options.color;
+				that.ctx.fillRect(1+point.x*11, 1+point.y*11, 10, 10);
+			})
+		})
+
+		/*
 		if(redraw)
 			this.clearTable();
 		else
@@ -170,6 +193,8 @@ var Snaketron = new Class({
 			that.colorCell(snack.x, snack.y, "green");
 		});
 
+		*/
+
 		var drawTime = (new Date()).getTime() - startTime;
 		if(drawTime > maxRenderTime && !redraw)
 			maxRenderTime = drawTime;
@@ -185,7 +210,7 @@ var Snaketron = new Class({
 		});
 	},
 	clearTable: function(){
-		this.table.getElements('td').setStyle('background-color', '#f6f6f6');
+		//this.table.getElements('td').setStyle('background-color', '#f6f6f6');
 	},
 	colorCell: function(x, y, color){
 		var cell = this.table.getElements("tr:nth-child("+y+") td:nth-child("+x+")")[0];

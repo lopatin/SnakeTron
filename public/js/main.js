@@ -171,7 +171,7 @@ var Snaketron = new Class({
 		});
 
 		var drawTime = (new Date()).getTime() - startTime;
-		if(drawTime > maxRenderTime)
+		if(drawTime > maxRenderTime && !redraw)
 			maxRenderTime = drawTime;
 	},
 	clearTails: function(){

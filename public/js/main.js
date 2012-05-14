@@ -302,7 +302,7 @@ var Snaketron = new Class({
 
 		this.socket.emit('send-direction', {
 			d: this.mainSnake.directions, 	// directions
-			p: this.mainSnake.points[0],	// First point in the snake. Syncronization assurance
+			p: this.mainSnake.points,		// Send snake points. Syncronization assurance
 			g: this.gameId,					// gameId
 			id: this.partnerId				// partnerId
 		});

@@ -100,7 +100,7 @@ io.sockets.on('connection', function(socket){
 
     socket.on('send-direction', function(data){
         if(games[data.g])
-            emitToAll(data.g, 'add-direction', data);
+            games[data.g].players[data.id].emit('add-direction', data);
     });
 
     socket.on('dead', function(data){

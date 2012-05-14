@@ -40,7 +40,7 @@ window.addEvent('domready', function(){
 	});
 
 	socket.on('add-direction', function(data){
-		game.addDirection(data.d, data.id);
+		game.addDirection(data.d, data.p);
 	});
 
 	socket.on('i', function(){
@@ -110,7 +110,7 @@ var Snaketron = new Class({
 						|| (e.key === 'right' && that.mainSnake.directions.getLast() !== 'left')
 						|| (e.key === 'up' && that.mainSnake.directions.getLast() !== 'down')
 						|| (e.key === 'down' && that.mainSnake.directions.getLast() !== 'up'))
-						that.sendMyDirection(e.key);
+						that.newDirection(e.key);
 			});
 		}(this);
 
@@ -280,20 +280,25 @@ var Snaketron = new Class({
 		this.partnerSnake.score = 0;
 		this.refreshScore();
 	},
-	addDirection: function(direction, partnerId){
-		if(partnerId === this.partnerId) // If this is the same guy
-			this.mainSnake.directions.push(direction);		
-		else
-			this.partnerSnake.directions.push(direction);
-		this.draw();
+	addDirection: function(direction, point){
+		// Remove all points that happened after this key press (sync issues)
+		while(this.partnerSnake.points[0].x !== point.x && this.partnerSnake.points[0].y !== point.y)
+			this.partnerSnake.points.shift();
+
+		// Push the direction
+		this.partnerSnake.directions.push(direction);
+		this.draw();						// TODO: is this needed?
 	},
-	sendMyDirection: function(key){
+	newDirection: function(key){
+		this.mainSnake.directions.push(key);
+
 		this.socket.emit('send-direction', {
-			d: key, 						// directions
+			d: key, 						// direction
+			p: this.mainSnake.points[0],	// First point in the snake. Syncronization assurance
 			g: this.gameId,					// gameId
 			id: this.partnerId				// partnerId
 		});
-		this.draw();
+		this.draw();						// TODO: Is this needed?
 	},
 	checkDeath: function(){
 		var that = this;

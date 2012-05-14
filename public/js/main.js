@@ -2,7 +2,7 @@ window.addEvent('domready', function(){
 	var game = new Snaketron({
 		containerId: "snaketron",
 		size: {width: 80, height: 40},
-		speed: 100
+		speed: 60
 	});
 
 	var socket = io.connect("http://statsonstats.com:8081");

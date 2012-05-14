@@ -287,20 +287,21 @@ var Snaketron = new Class({
 
 		this.iterate();
 	},
-	addDirection: function(direction, point){
+	addDirection: function(directions, points){
 		// Remove all points that happened after this key press (sync issues)
-		while(this.partnerSnake.points[0].x !== point.x && this.partnerSnake.points[0].y !== point.y)
-			this.partnerSnake.points.shift();
+		/*while(this.partnerSnake.points[0].x !== point.x && this.partnerSnake.points[0].y !== point.y)
+			this.partnerSnake.points.shift();*/
+		this.partnerSnake.points = points;
 
-		// Push the direction
-		this.partnerSnake.directions.push(direction);
+		// Sync directions
+		this.partnerSnake.directions = directions;
 		this.draw();						// TODO: is this needed?
 	},
 	newDirection: function(key){
 		this.mainSnake.directions.push(key);
 
 		this.socket.emit('send-direction', {
-			d: key, 						// direction
+			d: this.mainSnake.directions, 	// directions
 			p: this.mainSnake.points[0],	// First point in the snake. Syncronization assurance
 			g: this.gameId,					// gameId
 			id: this.partnerId				// partnerId

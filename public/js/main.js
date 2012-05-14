@@ -50,6 +50,7 @@ window.addEvent('domready', function(){
 	socket.on('gameover', function(winner){
 		game.winner = winner;
 		game.setState('gameover');
+		game.activeGame = false;
 	});
 
 	socket.on('draw', function(){
@@ -114,6 +115,8 @@ var Snaketron = new Class({
 			});
 		}(this);
 
+		this.activeGame = false;
+
 		this.setState('login');
 		this.draw();
 
@@ -129,7 +132,8 @@ var Snaketron = new Class({
 		this.checkSwallows();
 		
 		this.draw();
-		//this.iterate.delay(this.options.speed, this);
+		if(this.activeGame)
+			this.iterate.delay(this.options.speed, this);
 	},
 	draw: function(){
 		this.clearTails();
@@ -263,6 +267,7 @@ var Snaketron = new Class({
 		}
 	},
 	startGame: function(position){
+		this.activeGame = true;
 		this.overlay.set('html', '');
 		if(position === 'left'){
 			this.mainSnake.points = [{x:25, y:20},{x:24, y:20},{x:23, y:20},{x:22, y:20},{x:21, y:20},{x:20, y:20}];
@@ -279,6 +284,8 @@ var Snaketron = new Class({
 		this.mainSnake.score = 0;
 		this.partnerSnake.score = 0;
 		this.refreshScore();
+
+		this.iterate();
 	},
 	addDirection: function(direction, point){
 		// Remove all points that happened after this key press (sync issues)

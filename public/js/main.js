@@ -35,7 +35,7 @@ window.addEvent('domready', function(){
 		game.removeSnack(data.id);
 		if(data.pid === game.partnerId)
 			game.mainSnake.addScore(data.weight);
-		else game.otherSnakes[0].addScore(data.weight);
+		else game.partnerSnake.addScore(data.weight);
 		game.refreshScore();
 	});
 
@@ -92,13 +92,11 @@ var Snaketron = new Class({
 			direction: "left"
 		});
 
-		this.otherSnakes = [];
 		this.partnerSnake = new Snake({
 			color: "#999999",
 			points: [],
 			direction: "right"
 		});
-		this.otherSnakes.push(this.partnerSnake);
 
 		// Create snacks
 		this.snacks = [];
@@ -126,7 +124,7 @@ var Snaketron = new Class({
 		//this.syncMyDirections();
 		this.mainSnake.step();
 		this.checkDeath();
-		this.otherSnakes[0].step();
+		this.partnerSnake.step();
 		this.checkDeath();
 		this.checkSwallows();
 		
@@ -135,10 +133,8 @@ var Snaketron = new Class({
 	},
 	draw: function(){
 		this.clearTails();
-		var snakes = Array.clone(this.otherSnakes);
 		var that = this;
-		snakes.push(this.mainSnake);
-		snakes.each(function(snake, index){
+		this.snakesArray().each(function(snake, index){
 			snake.points.each(function(point, index){
 				that.colorCell(point.x, point.y, snake.options.color);
 			});
@@ -151,13 +147,7 @@ var Snaketron = new Class({
 	},
 	clearTails: function(){
 		var that = this;
-		var popped = this.mainSnake.popped;
-		if(popped){
-			this.colorCell(popped.x, popped.y, "#f6f6f6");
-			this.mainSnake.popped = null;
-		}
-
-		this.otherSnakes.each(function(snake){
+		this.snakesArray().each(function(snake){
 			var popped = snake.popped;
 			if(popped){
 				that.colorCell(popped.x, popped.y, "#f6f6f6");
@@ -277,24 +267,24 @@ var Snaketron = new Class({
 		if(position === 'left'){
 			this.mainSnake.points = [{x:25, y:20},{x:24, y:20},{x:23, y:20},{x:22, y:20},{x:21, y:20},{x:20, y:20}];
 			this.mainSnake.directions = ["right"];
-			this.otherSnakes[0].points = [{x:60, y:20},{x:61, y:20},{x:62, y:20},{x:63, y:20},{x:64, y:20},{x:65, y:20}];
-			this.otherSnakes[0].directions = ["left"];
+			this.partnerSnake.points = [{x:60, y:20},{x:61, y:20},{x:62, y:20},{x:63, y:20},{x:64, y:20},{x:65, y:20}];
+			this.partnerSnake.directions = ["left"];
 		}
 		else if(position === 'right'){
 			this.mainSnake.points = [{x:60, y:20},{x:61, y:20},{x:62, y:20},{x:63, y:20},{x:64, y:20},{x:65, y:20}];
 			this.mainSnake.directions = ["left"];
-			this.otherSnakes[0].points = [{x:25, y:20},{x:24, y:20},{x:23, y:20},{x:22, y:20},{x:21, y:20},{x:20, y:20}];
-			this.otherSnakes[0].directions = ["right"];
+			this.partnerSnake.points = [{x:25, y:20},{x:24, y:20},{x:23, y:20},{x:22, y:20},{x:21, y:20},{x:20, y:20}];
+			this.partnerSnake.directions = ["right"];
 		}
 		this.mainSnake.score = 0;
-		this.otherSnakes[0].score = 0;
+		this.partnerSnake.score = 0;
 		this.refreshScore();
 	},
 	addDirection: function(direction, partnerId){
 		if(partnerId === this.partnerId) // If this is the same guy
 			this.mainSnake.directions.push(direction);		
 		else
-			this.otherSnakes[0].directions.push(direction);
+			this.partnerSnake.directions.push(direction);
 		this.draw();
 	},
 	sendMyDirection: function(key){
@@ -314,32 +304,32 @@ var Snaketron = new Class({
 			y = this.mainSnake.points[0].y;
 		if(x < 0 || y < 0 || x > this.options.width || y > this.options.height)
 			dead = true;
-		this.otherSnakes.each(function(snake){
-			snake.points.each(function(point, index){
-				if(point.x === x && point.y === y){
-					dead = true;
-					if(index === 0)
-						draw = true;
-					else doub = true;
-				}
-			});
+		
+		this.partnerSnake.points.each(function(point, index){
+			if(point.x === x && point.y === y){
+				dead = true;
+				if(index === 0)
+					draw = true;
+				else doub = true;
+			}
 		});
+		
 		this.mainSnake.points.each(function(point, index){
 			if(index !== 0 && point.x === that.mainSnake.points[0].x && point.y === that.mainSnake.points[0].y)
 				dead = true;
 		});
 
 		if(draw)
-			this.socket.emit('draw', {gameId: this.gameId, partnerId: this.partnerId, myScore: that.mainSnake.score, oScore: that.otherSnakes[0].score, doub: doub});
+			this.socket.emit('draw', {gameId: this.gameId, partnerId: this.partnerId, myScore: that.mainSnake.score, oScore: that.partnerSnake.score, doub: doub});
 		else if(dead)
-			this.socket.emit('dead', {gameId: this.gameId, partnerId: this.partnerId, myScore: that.mainSnake.score, oScore: that.otherSnakes[0].score, doub: doub});
+			this.socket.emit('dead', {gameId: this.gameId, partnerId: this.partnerId, myScore: that.mainSnake.score, oScore: that.partnerSnake.score, doub: doub});
 	},
 	refreshScore: function(clear){
 		var that = this;
 		var classes = '';
-		if(this.mainSnake.score > this.otherSnakes[0].score)
+		if(this.mainSnake.score > this.partnerSnake.score)
 			classes = 'winning';
-		else if(this.mainSnake.score < this.otherSnakes[0].score)
+		else if(this.mainSnake.score < this.partnerSnake.score)
 			classes = 'losing';
 
 		if(clear && clear === true)
@@ -352,9 +342,12 @@ var Snaketron = new Class({
 			</tr>\
 			<tr>\
 				<td class="score '+classes+'">'+that.mainSnake.score+'</td>\
-				<td class="score">'+that.otherSnakes[0].score+'</td>\
+				<td class="score">'+that.partnerSnake.score+'</td>\
 			</tr>\
 			</table>');
+	},
+	snakesArray: function(){
+		return [this.mainSnake, this.partnerSnake];
 	}
 });
 

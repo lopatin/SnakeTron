@@ -134,13 +134,18 @@ var Snaketron = new Class({
 		this.checkSwallows();
 		
 		this.draw();
+		
 		/*
 		if(this.activeGame)
 			this.iterate.delay(this.options.speed, this);
 		*/
 	},
-	draw: function(){
-		this.clearTails();
+	draw: function(redraw){
+		if(redraw)
+			this.clearTable();
+		else
+			this.clearTails();
+
 		var that = this;
 		this.snakesArray().each(function(snake, index){
 			snake.points.each(function(point, index){
@@ -300,7 +305,7 @@ var Snaketron = new Class({
 
 		// Sync directions
 		this.partnerSnake.directions = directions;
-		this.draw();						// TODO: is this needed?
+		this.draw(true);						// TODO: is this needed?
 	},
 	newDirection: function(key){
 		this.mainSnake.directions.push(key);

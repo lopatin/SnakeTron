@@ -132,8 +132,10 @@ var Snaketron = new Class({
 		this.checkSwallows();
 		
 		this.draw();
+		/*
 		if(this.activeGame)
 			this.iterate.delay(this.options.speed, this);
+		*/
 	},
 	draw: function(){
 		this.clearTails();
@@ -285,7 +287,7 @@ var Snaketron = new Class({
 		this.partnerSnake.score = 0;
 		this.refreshScore();
 
-		this.iterate();
+		//this.iterate();
 	},
 	addDirection: function(directions, points){
 		// Remove all points that happened after this key press (sync issues)

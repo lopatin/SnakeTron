@@ -1,4 +1,8 @@
 
+
+var maxRenderTime = 0;
+var maxIterateTime = 0;
+
 window.addEvent('domready', function(){
 	var game = new Snaketron({
 		containerId: "snaketron",
@@ -53,6 +57,8 @@ window.addEvent('domready', function(){
 		game.activeGame = false;
 		if(this.iterateTimer)
 			clearInterval(this.iterateTimer);
+
+		alert("Max iterate time: "+maxIterateTime+"\n\nMax render time: "+maxRenderTime);
 	});
 
 	socket.on('draw', function(){
@@ -126,6 +132,7 @@ var Snaketron = new Class({
 		//this.iterate();
 	},
 	iterate: function(){
+		var startTime = (new Date()).getTime();
 		//this.syncMyDirections();
 		this.mainSnake.step();
 		this.checkDeath();
@@ -134,13 +141,18 @@ var Snaketron = new Class({
 		this.checkSwallows();
 		
 		this.draw();
-		
+
 		/*
 		if(this.activeGame)
 			this.iterate.delay(this.options.speed, this);
 		*/
+
+		var iterTime = (new Date()).getTime() - startTime;
+		if(iterTime > maxIterateTime)
+			maxIterateTime = iterTime;
 	},
 	draw: function(redraw){
+		var startTime = (new Date()).getTime();
 		if(redraw)
 			this.clearTable();
 		else
@@ -157,6 +169,10 @@ var Snaketron = new Class({
 		this.snacks.each(function(snack){
 			that.colorCell(snack.x, snack.y, "green");
 		});
+
+		var drawTime = (new Date()).getTime() - startTime;
+		if(drawTime > maxRenderTime)
+			maxRenderTime = drawTime;
 	},
 	clearTails: function(){
 		var that = this;

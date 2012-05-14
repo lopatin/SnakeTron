@@ -167,13 +167,20 @@ var Snaketron = new Class({
 			}
 		}
 
+		// Draw snakes
 		var that = this;
 		this.snakesArray().each(function(snake, index){
 			snake.points.each(function(point, index){
 				that.ctx.fillStyle = snake.options.color;
 				that.ctx.fillRect(1+point.x*11, 1+point.y*11, 10, 10);
-			})
-		})
+			});
+		});
+
+		// Draw snacks
+		this.snacks.each(function(snack){
+			that.ctx.fillStyle = "green";
+			that.ctx.fillRect(1+snack.x*11, 1+snack.y*11, 10, 10);
+		});
 
 		/*
 		if(redraw)

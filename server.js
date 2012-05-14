@@ -3,13 +3,15 @@ var app = express.createServer();
 var io = require('socket.io').listen(app);  // Socket.io
 var async = require('async');               // Flow control
 
+var mysqlConfig = require('./mysqlConfig');
+
 app.listen(8081);
 
 // Database
 var mysql = require('mysql');
 var client = mysql.createClient({
-  user: 'root',
-  password: 'sasha16'
+  user: mysqlConfig.username,
+  password: mysqlConfig.password
 });
 client.query("USE snaketron"); 
 

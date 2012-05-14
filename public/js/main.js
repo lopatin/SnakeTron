@@ -140,7 +140,8 @@ var Snaketron = new Class({
 		*/
 	},
 	draw: function(){
-		this.clearTails();
+		//this.clearTails();
+		this.clearTable();
 		var that = this;
 		this.snakesArray().each(function(snake, index){
 			snake.points.each(function(point, index){

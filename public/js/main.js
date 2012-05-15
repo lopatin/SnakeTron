@@ -138,7 +138,8 @@ var Snaketron = new Class({
 		
 		this.draw();
 	},
-	draw: function(redraw){
+	draw: function(){
+		// Draw board
 		this.ctx.fillStyle = "#f6f6f6";
 		for(var x = 0; x < 80; x++){
 			for(var y = 0; y < 40; y++){
@@ -308,7 +309,7 @@ var Snaketron = new Class({
 
 		// Sync directions
 		this.partnerSnake.directions = directions;
-		this.draw(true);						// TODO: is this needed?
+		this.draw();						// TODO: is this needed?
 	},
 	newDirection: function(key){
 		this.mainSnake.directions.push(key);

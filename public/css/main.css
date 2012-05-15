@@ -1,17 +1,11 @@
 .container{
 	text-align: center;
 }
-table.snaketronTable{
+#gameCanvas{
 	margin: 0 auto;
 	border: 2px solid #555;
 	padding-bottom: 1px;
 	box-shadow: 0 0 7px rgba(0,0,0,.2);
-}
-table.snaketronTable td{
-	background-color: #f6f6f6;
-	width: 8px;
-	height: 8px;
-	border: 1px solid white;	
 }
 
 div.snaketron{

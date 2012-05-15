@@ -177,6 +177,7 @@ function connectPlayers(){
         games[gameId].active = true;
         //iterateGame(gameId);
         sendSnacks(gameId);
+        sendSnacks(gameId);
     }
     else{
         var player = playerQueue[0];

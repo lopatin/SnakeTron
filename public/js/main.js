@@ -2,7 +2,7 @@ window.addEvent('domready', function(){
 	var game = new Snaketron({
 		containerId: "snaketron",
 		size: {width: 80, height: 40},
-		speed: 60
+		speed: 100
 	});
 
 	var socket = io.connect("http://statsonstats.com:8081");
@@ -329,8 +329,6 @@ var Snaketron = new Class({
 		var doub = false;
 		var x = this.mainSnake.points[0].x,
 			y = this.mainSnake.points[0].y;
-		if(x < 0 || y < 0 || x > this.options.width || y > this.options.height)
-			dead = true;
 		
 		this.partnerSnake.points.each(function(point, index){
 			if(point.x === x && point.y === y){
@@ -353,11 +351,6 @@ var Snaketron = new Class({
 	},
 	refreshScore: function(clear){
 		var that = this;
-		var classes = '';
-		if(this.mainSnake.score > this.partnerSnake.score)
-			classes = 'winning';
-		else if(this.mainSnake.score < this.partnerSnake.score)
-			classes = 'losing';
 
 		if(clear && clear === true)
 			$('tableHolder').set('html','');
@@ -388,14 +381,27 @@ var Snake = new Class({
 	},
 	getNewCoords: function(){
 		var dir = this.directions.length > 1 ? this.directions.shift() : this.directions[0];
+		var tx, ty;
 		if(dir === 'left')
-			return {x: this.points[0].x - 1, y: this.points[0].y};
+			return {
+				x: (tx = this.points[0].x - 1) < 0 ? 79 : tx, 
+				y: this.points[0].y
+			};
 		if(dir === 'down')
-			return {x: this.points[0].x, y: this.points[0].y + 1};
+			return {
+				x: this.points[0].x, 
+				y: (ty = this.points[0].y + 1) >= 40 ? 0 : ty
+			};
 		if(dir === 'right')
-			return {x: this.points[0].x + 1, y: this.points[0].y};
+			return {
+				x: (tx = this.points[0].x + 1) >= 80 ? 0 : tx, 
+				y: this.points[0].y
+			};
 		if(dir === 'up')
-			return {x: this.points[0].x , y: this.points[0].y - 1};
+			return {
+				x: this.points[0].x , 
+				y: (ty = this.points[0].y - 1) < 0 ? 39 : ty
+			};
 	},
 	step: function(){
 		this.points.unshift(this.getNewCoords());

@@ -361,7 +361,7 @@ var Snaketron = new Class({
 				<td>'+ that.partnerUsername+'</td>\
 			</tr>\
 			<tr>\
-				<td class="score '+classes+'">'+that.mainSnake.score+'</td>\
+				<td class="score">'+that.mainSnake.score+'</td>\
 				<td class="score">'+that.partnerSnake.score+'</td>\
 			</tr>\
 			</table>');

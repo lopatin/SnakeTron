@@ -50,8 +50,8 @@ window.addEvent('domready', function(){
 		game.winner = winner;
 		game.setState('gameover');
 		game.activeGame = false;
-		if(this.iterateTimer)
-			clearInterval(this.iterateTimer);
+		if(game.iterateTimer)
+			clearInterval(game.iterateTimer);
 	});
 
 	socket.on('draw', function(){

@@ -40,6 +40,11 @@ window.addEvent('domready', function(){
 
 	socket.on('add-direction', function(data){
 		game.addDirection(data.d, data.p);
+		game.sendPoints();
+	});
+
+	socket.on('send-points', function(data){
+		game.partnerSnake.points = data;
 	});
 
 	socket.on('i', function(){
@@ -368,6 +373,15 @@ var Snaketron = new Class({
 	},
 	snakesArray: function(){
 		return [this.mainSnake, this.partnerSnake];
+	},
+
+	// Send back points, to be extra sure snakes are in sync
+	sendPoints: function(){
+		socket.emit('send-points', {
+			id: this.partnerId,
+			g: this.gameId,
+			p: this.mainSnake.points
+		});
 	}
 });
 

@@ -104,7 +104,7 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('dead', function(data){
-        if(games[data.gameId].active){
+        if(games[data.gameId] && games[data.gameId].active){
             games[data.gameId].active = false;
             emitToAll(data.gameId, 'gameover', games[data.gameId].players[data.partnerId].username);
             saveGame(data); 
@@ -112,12 +112,18 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('draw', function(data){
-        if(games[data.gameId].active){
+        if(games[data.gameId] && games[data.gameId].active){
             games[data.gameId].active = false;
             emitToAll(data.gameId, 'draw', data);
             saveGame(data);
         }
     });
+
+    socket.on('send-points', function(data){
+        if(games[data.g] && games[data.g].active){
+            games[data.g].players[data.id].emit('send-points', data.p);
+        }
+    })
 });
 
 function saveGame(data){

@@ -82,21 +82,6 @@ var Snaketron = new Class({
 		this.overlay = new Element('div', {id: 'overlay'});
 		this.overlay.inject(this.container);
 
-		// Initialize table
-		/*
-		this.table = new Element('table', {class: 'snaketronTable'});
-		this.table.inject(this.container);
-
-		for(var y = 0; y < options.size.height; y++){
-			var tr = new Element('tr');
-			for(var x = 0; x < options.size.width; x++){
-				var td = new Element('td');
-				td.inject(tr);
-			}
-			tr.inject(this.table);
-		}
-		*/
-
 		this.canvas = document.getElementById("gameCanvas");
 		this.ctx = this.canvas.getContext("2d");
 
@@ -146,7 +131,7 @@ var Snaketron = new Class({
 		
 		this.draw();
 	},
-	draw: function(){
+	draw: function(clear){
 		// Draw board
 		this.ctx.fillStyle = "#f6f6f6";
 		for(var x = 0; x < 80; x++){
@@ -154,6 +139,8 @@ var Snaketron = new Class({
 				this.ctx.fillRect(1+x*11, 1+y*11, 10, 10);
 			}
 		}
+
+		if(clear) return;
 
 		// Draw snakes
 		var that = this;
@@ -220,6 +207,7 @@ var Snaketron = new Class({
 		if(state === 'waiting'){
 			this.state = 'waiting';
 			this.overlay.set('html', '<h3>Waiting for players</h3>');
+			this.draw(true);
 		}
 		else if(state === 'login'){
 			this.overlay.set('html', loginTemplate({}));
@@ -257,6 +245,8 @@ var Snaketron = new Class({
 			this.overlay.getElements('.loginPassword').addEvent('blur', function(e){
 				that.overlay.getElements('.loginHelper').hide();
 			});
+
+			this.draw(true);
 		}
 		else if(state === 'menu'){
 			var that = this;
@@ -272,6 +262,7 @@ var Snaketron = new Class({
 				that.socket.emit('random-opponent', that.username);
 			});
 			this.refreshScore(true);
+			this.draw(true);
 		}
 		else if(state === 'gameover'){
 			var that = this;

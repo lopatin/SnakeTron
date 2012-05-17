@@ -61,6 +61,8 @@ window.addEvent('domready', function(){
 
 	socket.on('draw', function(){
 		game.setState('gameover', {draw: true});
+		if(game.iterateTimer)
+			clearInterval(game.iterateTimer);
 	})
 
 	$(document.body).addEvent('keydown', function(e){

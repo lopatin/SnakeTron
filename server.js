@@ -94,7 +94,7 @@ io.sockets.on('connection', function(socket){
                             for(pid2 in games[key].players){
                                 if(games[key].players.hasOwnProperty(pid2)){
                                     if(pid2 != pid)
-                                        games[key].players[pid2].emit('gameover', {message: "Lucky you! Your opponent disconnected.", winner: games[key].players[pid2]});
+                                        games[key].players[pid2].emit('gameover', {message: "Lucky you! Your opponent disconnected.", winner: games[key].players[pid2].username});
                                 }
                             }
                             delete games[key];

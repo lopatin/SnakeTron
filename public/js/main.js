@@ -45,6 +45,7 @@ window.addEvent('domready', function(){
 
 	socket.on('send-points', function(data){
 		game.partnerSnake.points = data;
+		game.draw();
 	});
 
 	socket.on('i', function(){
@@ -352,9 +353,9 @@ var Snaketron = new Class({
 		});
 
 		if(draw)
-			this.socket.emit('draw', {gameId: this.gameId, partnerId: this.partnerId, myScore: that.mainSnake.score, oScore: that.partnerSnake.score, doub: doub});
+			this.socket.emit('draw', {gameId: this.gameId, partnerId: this.partnerId, myScore: that.mainSnake.score, oScore: that.partnerSnake.score, doub: doub, points: this.mainSnake.points});
 		else if(dead)
-			this.socket.emit('dead', {gameId: this.gameId, partnerId: this.partnerId, myScore: that.mainSnake.score, oScore: that.partnerSnake.score, doub: doub});
+			this.socket.emit('dead', {gameId: this.gameId, partnerId: this.partnerId, myScore: that.mainSnake.score, oScore: that.partnerSnake.score, doub: doub, points: this.mainSnake.points});
 	},
 	refreshScore: function(clear){
 		var that = this;

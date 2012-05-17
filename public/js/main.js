@@ -52,8 +52,8 @@ window.addEvent('domready', function(){
 		game.iterate();
 	});
 
-	socket.on('gameover', function(winner){
-		game.winner = winner;
+	socket.on('gameover', function(data){
+		game.winner = data.winner;
 		game.setState('gameover');
 		game.activeGame = false;
 		if(game.iterateTimer)
@@ -366,10 +366,10 @@ var Snaketron = new Class({
 			$('tableHolder').set('html', '<table class="scoreTable">\
 			<tr>\
 				<td>Streak Score</td>\
-				<td>Win/Loss</td>\
+				<td>Win / Loss</td>\
 			</tr>\
 			<tr>\
-				<td class="score">'+that.mainSnake.score+'</td>\
+				<td class="score" style="color: green;">'+that.mainSnake.score+'</td>\
 				<td class="score">'+that.partnerSnake.score+'</td>\
 			</tr>\
 			</table>');

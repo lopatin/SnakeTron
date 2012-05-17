@@ -111,17 +111,16 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('dead', function(data){
-        if(games[data.gameId] && games[data.gameId].active){
-            games[data.gameId].active = false;
+        if(games[data.gameId]){
             emitToAll(data.gameId, 'gameover', {winner: games[data.gameId].players[data.partnerId].username});
             games[data.gameId].players[data.partnerId].emit('send-points', data.points);
-            saveGame(data); 
+            saveGame(data);
+
         }
     });
 
     socket.on('draw', function(data){
-        if(games[data.gameId] && games[data.gameId].active){
-            games[data.gameId].active = false;
+        if(games[data.gameId]){
             emitToAll(data.gameId, 'draw', data);
             games[data.gameId].players[data.partnerId].emit('send-points', data.points);
             saveGame(data);
@@ -129,7 +128,7 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('send-points', function(data){
-        if(games[data.g] && games[data.g].active){
+        if(games[data.g]){
             games[data.g].players[data.id].emit('send-points', data.p);
         }
     })
@@ -189,8 +188,7 @@ function connectPlayers(){
             partnerUsername: player2.username,
             position: 'left'
         });
-        games[gameId].active = true;
-        //iterateGame(gameId);
+
         sendSnacks(gameId);
         sendSnacks(gameId);
     }
@@ -198,17 +196,6 @@ function connectPlayers(){
         var player = playerQueue[0];
         player.socket.emit('waiting', {});
     }
-}
-
-function iterateGame(gameId){
-    // Don't continue to iterate if game is inactive
-    if(games[gameId] && !games[gameId].active) return;
-
-    emitToAll(gameId, 'i', {});
-    setTimeout(function(){
-        if(games[gameId])
-            iterateGame(gameId);
-    }, 100);
 }
 
 // send snacks

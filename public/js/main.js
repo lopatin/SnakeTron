@@ -377,7 +377,7 @@ var Snaketron = new Class({
 
 	// Send back points, to be extra sure snakes are in sync
 	sendPoints: function(){
-		socket.emit('send-points', {
+		this.socket.emit('send-points', {
 			id: this.partnerId,
 			g: this.gameId,
 			p: this.mainSnake.points

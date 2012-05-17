@@ -121,7 +121,7 @@ io.sockets.on('connection', function(socket){
 
     socket.on('send-points', function(data){
         if(games[data.g] && games[data.g].active){
-            //games[data.g].players[data.id].emit('send-points', data.p);
+            games[data.g].players[data.id].emit('send-points', data.p);
         }
     })
 });

@@ -90,8 +90,15 @@ io.sockets.on('connection', function(socket){
             if(games.hasOwnProperty(key)){
                 for(pid in games[key].players){
                     if(games[key] && games[key].players.hasOwnProperty(pid)){
-                        if(socket == games[key].players[pid])
+                        if(socket == games[key].players[pid]){
+                            for(pid2 in games[key].players){
+                                if(games[key].players.hasOwnProperty(pid2)){
+                                    if(pid2 != pid)
+                                        games[key].players[pid2].emit('gameover', {message: "Lucky you! Your opponent disconnected.", winner: games[key].players[pid2]});
+                                }
+                            }
                             delete games[key];
+                        }
                     }
                 }
             }
@@ -106,7 +113,7 @@ io.sockets.on('connection', function(socket){
     socket.on('dead', function(data){
         if(games[data.gameId] && games[data.gameId].active){
             games[data.gameId].active = false;
-            emitToAll(data.gameId, 'gameover', games[data.gameId].players[data.partnerId].username);
+            emitToAll(data.gameId, 'gameover', {winner: games[data.gameId].players[data.partnerId].username});
             games[data.gameId].players[data.partnerId].emit('send-points', data.points);
             saveGame(data); 
         }

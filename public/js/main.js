@@ -365,8 +365,8 @@ var Snaketron = new Class({
 		else
 			$('tableHolder').set('html', '<table class="scoreTable">\
 			<tr>\
-				<td>Your Score</td>\
-				<td>'+ that.partnerUsername+'</td>\
+				<td>Streak Score</td>\
+				<td>Win/Loss</td>\
 			</tr>\
 			<tr>\
 				<td class="score">'+that.mainSnake.score+'</td>\

@@ -100,7 +100,7 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('eaten-snack', function(data){
-        if(games[data.gameId].snacks[data.snackId]){
+        if(games[data.gameId] && games[data.gameId].snacks[data.snackId]){
             emitToAll(data.gameId, 'remove-snack', {id: data.snackId, weight: data.snackWeight, pid: data.partnerId});
             sendSnacks(data.gameId);
             delete games[data.gameId].snacks[data.snackId];

@@ -231,8 +231,8 @@ function connectPlayers(){
         sendSnacks(gameId);
 
 
-        setTimeout(function(){setSpeed(gameId, 80)}, 30000);
-        setTimeout(function(){setSpeed(gameId, 60)}, 60000);
+        setTimeout(function(){setSpeed(gameId, 90)}, 30000);
+        setTimeout(function(){setSpeed(gameId, 80)}, 60000);
     }
     else{
         var player = playerQueue[0];

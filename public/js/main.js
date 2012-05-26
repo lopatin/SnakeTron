@@ -5,7 +5,7 @@ window.addEvent('domready', function(){
 		speed: 100
 	});
 
-	var socket = io.connect("http://localhost:8081");
+	var socket = io.connect("http://snaketron.com");
 	game.socket = socket;
 
 	socket.on('start-game', function(data){

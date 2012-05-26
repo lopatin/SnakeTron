@@ -40,11 +40,27 @@ ul.login-list li{
 	margin: 0 auto;
 }
 
+table#frontContainer{
+	margin: 0 auto;
+}
+table#frontContainer > tr > td, table#frontContainer > tbody > tr > td{
+	vertical-align: top;
+}
+
 .loginContainer{
-	background: rgba(0,0,0,.1);
-	border: 2px solid #fff;
-	padding: 10px 60px;
+	background: rgba(0,50,140,.1);
+	border: 5px solid #fff;
+	padding: 10px;
 	margin-left: 0px;
+}
+
+.loginContainer table td{
+	vertical-align: top;
+	padding-left: 20px;
+}
+
+.loginContainer table td h4{
+	margin-bottom: 10px;
 }
 
 .loginContainer h4{
@@ -82,4 +98,33 @@ ul.login-list li{
 }
 .losing{
 	color: #d12323;
+}
+
+.leftTable{
+	position: relative;
+	top: 5px;
+	left: 50px;
+	float: left;
+}
+.leftTable td{
+	padding: 5px;
+}
+.leftTable tr:first-child td{
+	border-bottom: 1px solid #ccc;
+}
+
+td.significant{
+	font-weight: bold;
+}
+
+#leaderboards-table > tbody > tr > td, #leaderboards-table > tr > td{
+	padding: 0 10px;
+}
+
+tr.highlight{
+	background-color: #A5C4F0 !important;
+}
+tr.highlight td{
+	background-color: #A5C4F0 !important;
+	border-right-color: #fff;
 }

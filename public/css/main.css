@@ -105,6 +105,7 @@ table#frontContainer > tr > td, table#frontContainer > tbody > tr > td{
 	top: 5px;
 	left: 50px;
 	float: left;
+	margin-left: -27px;
 }
 .leftTable td{
 	padding: 5px;

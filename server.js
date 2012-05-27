@@ -145,7 +145,7 @@ io.sockets.on('connection', function(socket){
         if(games[data.gameId]){
             emitToAll(data.gameId, 'gameover', {winner: games[data.gameId].players[data.partnerId].username});
             games[data.gameId].players[data.partnerId].emit('send-points', data.points);
-            saveGame(data);
+            //saveGame(data);
 
             lostGame(socket);
             if(games[data.gameId] && games[data.gameId].players[data.partnerId])
@@ -159,7 +159,7 @@ io.sockets.on('connection', function(socket){
         if(games[data.gameId]){
             emitToAll(data.gameId, 'draw', data);
             games[data.gameId].players[data.partnerId].emit('send-points', data.points);
-            saveGame(data);
+            //saveGame(data);
 
             delete games[data.gameId];
         }

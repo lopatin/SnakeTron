@@ -32,7 +32,7 @@ refreshLeaderboards();
 
 io.sockets.on('connection', function(socket){
 
-    refreshPlayerCount(socket);    
+    refreshPlayerCount(socket, true);    
 
     /*
      * Register user
@@ -106,8 +106,8 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('disconnect', function(){
-        refreshPlayerCount(socket);
-        
+        refreshPlayerCount(socket, false);
+
         for(var i = 0; i < playerQueue.length; i++){
             if(playerQueue[i].socket == socket)
                 playerQueue.splice(i,1);
@@ -302,14 +302,14 @@ function refreshLeaderboards(socket){
                 _.union(
                     results.anonRatio,
                     results.usersRatio), 
-                function(e){return e.ratio;}).reverse(), 
+                function(e){return parseFloat(e.ratio);}).reverse(), 
             10);
         leaders.scores = _.first(
             _.sortBy(
                 _.union(
                     results.anonScore,
                     results.usersScore), 
-                function(e){return e.score;}).reverse(), 
+                function(e){return parseFloat(e.score);}).reverse(), 
             10);
 
         for(var i = 1; i <= leaders.ratios.length; i++)
@@ -344,11 +344,13 @@ function sendRecord(socket){
 /*
  * Let all clients know the current number of players online
  */
-function refreshPlayerCount(socket){
+function refreshPlayerCount(socket, active){
     playerCount = io.sockets.clients().length;
     socket.broadcast.emit('player-count', playerCount);
-    socket.emit('player-count', playerCount);
-    socket.emit('leaderboards', leaderboards);
+    if(active){
+        socket.emit('player-count', playerCount);
+        socket.emit('leaderboards', leaderboards);
+    }
 }
 
 // send snacks

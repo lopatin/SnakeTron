@@ -345,7 +345,7 @@ function sendRecord(socket){
  * Let all clients know the current number of players online
  */
 function refreshPlayerCount(socket, active){
-    playerCount = io.sockets.clients().length;
+    playerCount = _.filter(io.sockets.clients(), function(c){return c;}).length;
     socket.broadcast.emit('player-count', playerCount);
     if(active){
         socket.emit('player-count', playerCount);

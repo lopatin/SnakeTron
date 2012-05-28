@@ -453,7 +453,7 @@ var Snaketron = new Class({
 		var str = "<strong>"+this.onlineCount+"</strong> "+ ((this.onlineCount>1) ? "people" : "person") +" online";
 		if(this.username)
 			str += " | <strong>"+this.username+"</strong> - <a href='/'>Logout</a>";
-		$('navBar').set('html', str);
+		//$('navBar').set('html', str);
 	},
 
 	/* 

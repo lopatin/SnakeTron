@@ -1,3 +1,0 @@
-/**
- * The Action Class
- * 

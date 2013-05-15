@@ -1,15 +1,29 @@
-var express = require('express');
-var app = express.createServer();
-var io = require('socket.io').listen(app);  // Socket.io
-var async = require('async');               // Flow control
-var _ = require('underscore');
-// var passHash = require('./passHash');
+(function() {
+  var requirejs;
 
-app.listen(8081);
+  requirejs = require('requirejs');
 
+  requirejs.config({
+    baseUrl: __dirname + "/lib",
+    paths: {
+      common: __dirname + "/public/js"
+    },
+    nodeRequire: require
+  });
 
-// Public files config
-app.configure(function(){
-    app.use(express.static(__dirname + '/public'));
-});
+  requirejs(['snaketron', 'express', 'socket.io', 'http'], function(snaketron, express, socketio, http) {
+    var app, io, server;
 
+    app = express();
+    app.configure(function() {
+      return app.use(express["static"](__dirname + '/public'));
+    });
+    server = http.createServer(app);
+    server.listen(8080);
+    io = socketio.listen(server);
+    return io.sockets.on('connection', function(socket) {
+      return snaketron.socket_connected(socket);
+    });
+  });
+
+}).call(this);

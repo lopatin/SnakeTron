@@ -1,6 +1,6 @@
 define [
-	'underscore',
-	'redisclient',
+	'underscore'
+	'redisclient'
 	'utils/playercounter'
 ], (_, redis, PlayerCounter) ->
 	class Player

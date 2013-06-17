@@ -22,7 +22,7 @@
     server.listen(8080);
     io = socketio.listen(server);
     return io.sockets.on('connection', function(socket) {
-      return snaketron.socket_connected(socket);
+      return snaketron.socketConnected(socket);
     });
   });
 

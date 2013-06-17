@@ -32,7 +32,8 @@ module.exports = function(grunt) {
       dist: {
         files: grunt.file.expandMapping(['src/haml/**/*.haml'], 'public/', {
           rename: function(destBase, destPath){
-            return destBase+destPath.replace(/src\/haml\//, "").replace(/\.haml$/, ".html");
+            var extension = !!destPath.match(/.*\/templates\/.*/) ? "" : ".html"
+            return destBase+destPath.replace(/src\/haml\//, "").replace(/\.haml$/, extension);
           }
         })
       }

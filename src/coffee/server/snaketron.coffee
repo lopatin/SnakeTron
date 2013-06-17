@@ -1,21 +1,21 @@
 #
-# Main Snaketron server-side singleton
+# Main Snaketron server-side class
 # 
 define [
-	'redisclient',
-	'player',
-	'match',
+	'redisclient'
+	'player'
+	'match'
 	'utils/playercounter'
 	], (redis, Player, Match, PlayerCounter) ->
 	class Snaketron
 		constructor: () ->
 			@players = []
 
-		socket_connected: (socket) ->
+		socketConnected: (socket) ->
 			@players.push new Player socket
 
-		socket_disconnected: (socket) ->
-			PlayerCounter.remove_socket socket
+		socketDisconnected: (socket) ->
+			PlayerCounter.remove socket
 
 
 	return new Snaketron()

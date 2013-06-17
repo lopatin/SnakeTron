@@ -11,7 +11,7 @@ define [
 		constructor: () ->
 			redis.del 'connected_players'
 			@count = 0
-			setInterval @update_count.bind(this), 1000
+			setInterval @updateCount.bind(this), 1000
 
 		add: (player) ->
 			self = this
@@ -28,7 +28,7 @@ define [
 
 			player.hb_timeout = setTimeout @remove.bind(this, player), 4100
 
-		update_count: () ->
+		updateCount: () ->
 			self = this
 			redis.scard 'connected_players', (err, val) ->
 				self.count = val

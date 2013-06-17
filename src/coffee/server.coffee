@@ -9,9 +9,9 @@ requirejs.config
 
 # Main server code
 requirejs [
-	'snaketron',
-	'express',
-	'socket.io',
+	'snaketron'
+	'express'
+	'socket.io'
 	'http'
 	], (snaketron, express, socketio, http) ->
 
@@ -25,4 +25,4 @@ requirejs [
 		# Socket.io websocket server
 		io = socketio.listen server
 		io.sockets.on 'connection', (socket) ->
-			snaketron.socket_connected socket
+			snaketron.socketConnected socket

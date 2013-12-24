@@ -1,2 +1,112 @@
-body .bleh {
-  display: none; }
+body {
+  font-family: Helvetica, Arial;
+  color: #333333; }
+  body a {
+    cursor: pointer; }
+  body .content {
+    padding: 20px 0; }
+  body .header {
+    border-bottom: 1px solid #333333;
+    box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.08);
+    height: 80px;
+    box-sizing: border-box;
+    font-style: italic; }
+    body .header a.logo {
+      background-image: url("/images/SnaketronLogo@2x.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      width: 255px;
+      height: 57px;
+      cursor: pointer;
+      display: block;
+      float: left;
+      margin-top: 12px; }
+    body .header ul.navigation {
+      margin: 0;
+      padding: 0;
+      float: right; }
+      body .header ul.navigation li {
+        display: inline-block;
+        list-style: none;
+        cursor: pointer; }
+        body .header ul.navigation li a {
+          padding: 29px 20px;
+          display: block;
+          box-sizing: border-box;
+          color: #333333;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 18px;
+          height: 79px; }
+        body .header ul.navigation li:hover {
+          box-shadow: inset 0 -4px 0 #cccccc; }
+        body .header ul.navigation li .selected {
+          box-shadow: inset 0 -4px 0 #333333; }
+  body #Marketing p.lead {
+    margin-bottom: 10px; }
+  body #Marketing ul.feature-list {
+    padding-left: 20px; }
+    body #Marketing ul.feature-list li {
+      list-style: none;
+      margin-bottom: 10px; }
+      body #Marketing ul.feature-list li span.glyphicon {
+        float: left;
+        margin-left: -20px;
+        margin-top: 1px; }
+  body #Home .row .row {
+    margin-bottom: 20px; }
+  body #Home .panel .panel-heading a.logout {
+    float: right;
+    margin: -4px -9px 0 0; }
+  body .authentication .list-group {
+    margin-bottom: 10px; }
+    body .authentication .list-group .list-group-item {
+      padding: 5px 30px; }
+      body .authentication .list-group .list-group-item .glyphicon {
+        opacity: 0;
+        float: left;
+        margin: 0 0 0 -20px; }
+      body .authentication .list-group .list-group-item.active .glyphicon {
+        opacity: 1; }
+      body .authentication .list-group .list-group-item.active:hover .glyphicon {
+        color: white; }
+      body .authentication .list-group .list-group-item:hover .glyphicon {
+        opacity: 1;
+        color: #cccccc; }
+  body .authentication a.fb-button {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-top: 5px; }
+    body .authentication a.fb-button img {
+      width: 180px; }
+  body .authentication form {
+    display: none; }
+    body .authentication form input {
+      margin-bottom: 10px; }
+
+.hr {
+  width: 100%;
+  height: 1px;
+  background-color: #cccccc;
+  margin: 14px 0; }
+  .hr .label {
+    color: #cccccc;
+    font-size: 10px;
+    background-color: white;
+    margin: -7px auto 0;
+    width: 10%;
+    left: 45%;
+    right: 45%;
+    position: absolute; }
+
+.panel-title.lead {
+  font-weight: 400; }
+
+.btn .description {
+  font-size: 12px;
+  opacity: 0.75; }
+
+.clear {
+  clear: both; }

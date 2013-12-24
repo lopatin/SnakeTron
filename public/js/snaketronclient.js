@@ -26,22 +26,33 @@
     }
   });
 
-  define(['underscore', 'socketio', 'views/application'], function(_, io, ApplicationView) {
-    var l, socket;
+  define(['underscore', 'router', 'views/application', 'app'], function(_, Router, ApplicationView, app) {
+    var r;
 
-    l = window.location;
-    socket = io.connect(l.protocol + l.host);
-    socket.emit('hartbeet');
-    setInterval(function() {
-      return socket.emit('hartbeet');
-    }, 1000);
+    r = new Router;
+    $(document).delegate('a', 'click', function(e) {
+      var href;
+
+      e.preventDefault();
+      href = $(e.target).attr('href');
+      if (href) {
+        r.navigate(href, {
+          trigger: true
+        });
+      }
+      return false;
+    });
     return $(function() {
-      var appView;
+      var view;
 
-      appView = new ApplicationView({
-        el: $("body")
+      view = new ApplicationView({
+        el: $("body"),
+        router: r
       });
-      return console.log(appView);
+      Backbone.history.start({
+        pushState: true
+      });
+      return app.init(view);
     });
   });
 

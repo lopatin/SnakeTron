@@ -1,0 +1,27 @@
+#Home
+  .container
+    .row
+      .col-md-8
+        .row
+          .col-md-6
+            .btn.btn-primary.btn-lg.btn-block 
+              Quick Play
+              .description
+                Instantly play against a random opponent
+          .col-md-6
+            .btn.btn-primary.btn-lg.btn-block 
+              Challenge
+              .description
+                Invite an opponent of your choice to play
+        .row
+          .col-md-12
+            .panel.panel-default
+              .panel-heading 
+                %h3.panel-title.lead History
+              .panel-body
+      .col-md-4
+        .panel.panel-default
+          .panel-heading 
+            %a.btn.btn-default.btn-sm.logout{href: '/logout'} Logout
+            %h3.panel-title.lead {{name}}
+          .panel-body

@@ -27,7 +27,9 @@
   "scripts": {
     "test": "grunt nodeunit"
   },
-  "devDependencies": {
+  "keywords": [],
+  "dependencies": {
+    "passport": "~0.1.17",
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-watch": "~0.2.0",
     "grunt": "~0.4.1",
@@ -36,11 +38,15 @@
     "requirejs": "~2.1.6",
     "grunt-contrib-coffee": "~0.7.0",
     "amdefine": "0.0.5",
-    "socket.io": "~0.9.14",
+    "socket.io": "~0.9.16",
     "express": "~3.2.4",
     "underscore": "~1.4.4",
     "redis": "~0.8.3",
-    "hiredis": "~0.1.15"
-  },
-  "keywords": []
+    "hiredis": "~0.1.15",
+    "passport-local": "~0.1.6",
+    "passport-facebook": "~1.0.2",
+    "session.socket.io": "~0.1.6",
+    "connect-redis": "~1.4.6",
+    "bcrypt": "~0.7.7"
+  }
 }

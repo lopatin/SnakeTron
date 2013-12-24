@@ -1,3 +1,4 @@
 <div class='application'>
-  bleh
+  <div class='header'></div>
+  <div class='content'></div>
 </div>

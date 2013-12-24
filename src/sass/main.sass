@@ -1,3 +1,133 @@
+$darkGray: #333
+$lightGray: #ccc
+
 body
-	.bleh
-		display: none
+  font-family: Helvetica, Arial
+  color: $darkGray
+  a
+    cursor: pointer
+  .container
+  .content
+    padding: 20px 0
+  .header
+    border-bottom: 1px solid #333
+    box-shadow: inset 0 -5px 0 rgba(0,0,0,.08)
+    height: 80px
+    box-sizing: border-box
+    font-style: italic
+
+    a.logo
+      background-image: url('/images/SnaketronLogo@2x.png')
+      background-repeat: no-repeat
+      background-size: 100%
+      width: 255px
+      height: 57px
+      cursor: pointer
+      display: block
+      float: left
+      margin-top: 12px
+
+    ul.navigation
+      margin: 0
+      padding: 0
+      float: right
+      li
+        display: inline-block
+        list-style: none
+        cursor: pointer
+        a
+          padding: 29px 20px
+          display: block
+          box-sizing: border-box
+          color: $darkGray
+          text-decoration: none
+          text-transform: uppercase
+          font-weight: bold
+          font-size: 18px 
+          height: 79px
+        &:hover
+          box-shadow: inset 0 -4px 0 $lightGray
+        .selected
+          box-shadow: inset 0 -4px 0 $darkGray
+
+  
+  #Marketing
+    p.lead
+      margin-bottom: 10px
+    ul.feature-list
+      padding-left: 20px
+      li
+        list-style: none
+        margin-bottom: 10px
+        span.glyphicon
+          float: left
+          margin-left: -20px
+          margin-top: 1px
+
+  #Home
+    .row
+      .row
+        margin-bottom: 20px
+    .panel
+      .panel-heading
+        a.logout
+          float: right
+          margin: -4px -9px 0 0
+
+  .authentication
+    .list-group
+      margin-bottom: 10px
+      .list-group-item
+        padding: 5px 30px
+        .glyphicon
+          opacity: 0
+          float: left
+          margin: 0 0 0 -20px
+        &.active
+          .glyphicon
+            opacity: 1
+          &:hover
+            .glyphicon
+              color: white
+        &:hover
+          .glyphicon
+            opacity: 1
+            color: #ccc
+    a.fb-button
+      width: 100%
+      text-align: center
+      display: block
+      margin-top: 5px
+      img
+        width: 180px
+    form
+      display: none
+      input
+        margin-bottom: 10px
+
+.hr
+  width: 100%
+  height: 1px
+  background-color: $lightGray
+  margin: 14px 0
+  .label
+    color: $lightGray
+    font-size: 10px
+    background-color: white
+    margin: -7px auto 0
+    width: 10%
+    left: 45%
+    right: 45%
+    position: absolute
+
+.panel-title.lead
+  font-weight: 400
+
+.btn
+  .description
+    font-size: 12px
+    opacity: .75
+
+.clear
+  clear: both
+

@@ -1,14 +1,20 @@
 define [
 	'underscore'
 	'redisclient'
-	'utils/playercounter'
-], (_, redis, PlayerCounter) ->
-	class Player
-		constructor: (@socket) ->
-			PlayerCounter.add this
-
-		login: (username, password) ->
-
-		register: (username, password, password_confirmation) ->
+], (_, redis) ->
+  class Player
+    constructor: (@user, @socket) -> 
 
 
+    # Emit a message to the player
+    emit: (message, data, callback) ->
+      if typeof data == "undefined"
+        data = callback = undefined
+      if typeof data == "function"
+        callback = data
+        data = {}
+      if @socket
+        @socket.emit message, data, callback
+
+    getId: () ->
+      @user.id

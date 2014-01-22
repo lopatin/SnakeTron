@@ -52,7 +52,7 @@
       Backbone.history.start({
         pushState: true
       });
-      return app.init(view);
+      return app.init(view, r);
     });
   });
 

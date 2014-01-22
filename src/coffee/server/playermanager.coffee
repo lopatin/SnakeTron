@@ -24,6 +24,10 @@ define [
       redis.srem 'connected_players', player.socket.id
       delete @players[player.getId()]
 
+    # Return a player of the requested id
+    get: (id) ->
+      @players[id]
+
     # Emit a message to all players
     emit: (message, data) ->
       _.each @players, (player) ->

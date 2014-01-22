@@ -1,5 +1,8 @@
 $darkGray: #333
 $lightGray: #ccc
+$headerHeight: 80px
+$footerHeight: 80px
+$transitionLength: .5s
 
 body
   font-family: Helvetica, Arial
@@ -7,14 +10,116 @@ body
   a
     cursor: pointer
   .container
-  .content
-    padding: 20px 0
+  .application
+    .content
+      position: fixed
+      top: $headerHeight
+      bottom: $footerHeight
+      left: 0
+      right: 0
+      padding: 20px 0
+      overflow: auto
+      transition: opacity $transitionLength
+      -moz-transition: opacity $transitionLength
+      -webkit-transition: opacity $transitionLength
+      -o-transition: opacity $transitionLength
+      opacity: 1
+      &._hidden
+        opacity: 0
+
+    .game
+      position: fixed
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      .game-wrapper
+        transition: opacity $transitionLength
+        -moz-transition: opacity $transitionLength
+        -webkit-transition: opacity $transitionLength
+        -o-transition: opacity $transitionLength
+        &._hidden
+          opacity: 0
+
+        .waiting
+          margin-top: 30%
+          text-align: center
+          display: none
+          transition: opacity .2s
+          -moz-transition: opacity .2s
+          -webkit-transition: opacity .2s
+          -o-transition: opacity .2s
+          &._hidden
+            opacity: 0
+          &.slow
+            transition: opacity .8s
+            -moz-transition: opacity .8s
+            -webkit-transition: opacity .8s
+            -o-transition: opacity .8s
+          .waiting-indicator
+            width: 100px
+            height: 116px
+            margin: 0 auto
+            background-image: url('/images/snake.png')
+            background-repeat: no-repeat
+            background-size: 100%
+            margin-bottom: 10px
+        .stage
+          display: none
+          .scoreboard
+          .canvas
+        .results
+          display: none
+          width: 500px
+          height: 600px
+          background-color: #333
+          margin: 0 auto
+          margin-top: 30%
+
+  .scoreboard-wrapper
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    transition: top $transitionLength
+    -moz-transition: top $transitionLength
+    -webkit-transition: top $transitionLength
+    -o-transition: top $transitionLength
+    &._hidden
+      top: -50px
+    .scoreboard
+      border-left: 1px solid #333
+      border-right: 1px solid #333
+      border-bottom: 1px solid #333
+      min-width: 600px
+      box-shadow: inset -5px -5px 0 #EAEAEA
+      margin: 0 auto
+      box-sizing: border-box
+      display: table
+      .logo
+        width: 155px
+        height: 24px
+        padding: 11px 11px 14px 11px
+        box-sizing: content-box
+        border-right: 1px solid #bbb
+        box-shadow: 2px 0 0 white, inset 2px 0 white
+
   .header
     border-bottom: 1px solid #333
     box-shadow: inset 0 -5px 0 rgba(0,0,0,.08)
-    height: 80px
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    height: $headerHeight
     box-sizing: border-box
     font-style: italic
+    transition: top $transitionLength
+    -moz-transition: top $transitionLength
+    -webkit-transition: top $transitionLength
+    -o-transition: top $transitionLength
+    &._hidden
+      top: -80px
 
     a.logo
       background-image: url('/images/SnaketronLogo@2x.png')
@@ -49,6 +154,23 @@ body
           box-shadow: inset 0 -4px 0 $lightGray
         .selected
           box-shadow: inset 0 -4px 0 $darkGray
+
+  .footer
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    height: $footerHeight
+    box-shadow: inset 0 5px 0 rgba(0,0,0,.08)
+    border-top: 1px solid #333
+    background-color: #fff
+
+    transition: bottom $transitionLength
+    -moz-transition: bottom $transitionLength
+    -webkit-transition: bottom $transitionLength
+    -o-transition: bottom $transitionLength
+    &._hidden
+      bottom: -80px
 
   
   #Marketing

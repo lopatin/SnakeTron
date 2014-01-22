@@ -38,4 +38,4 @@ define [
       el: $("body")
       router: r
     Backbone.history.start pushState: true
-    app.init(view)
+    app.init(view, r)

@@ -1,30 +1,30 @@
 .panel.panel-default
-	.panel-heading 
-		%h3.panel-title.lead Enter Snaketron
-	.panel-body
-		%a.fb-button{href: '/auth/facebook/'}
-			%img{src: '/images/fbButton.png'}
-		.hr
-			.label OR
-		.list-group.manual-login
-			%a.list-group-item.small{"data-authtype" => "login"}
-				%span.glyphicon.glyphicon-ok
-				Login
-			%a.list-group-item.small{"data-authtype" => "register"}
-				%span.glyphicon.glyphicon-ok
-				Register
-			%a.list-group-item.small{"data-authtype" => "anonymous"}
-				%span.glyphicon.glyphicon-ok
-				Play anonymously
-		%form.login{role: "form", action: "/login", method: "POST"}
-			%input.form-control.username{type: "text", name: "username", placeholder: "Username"}
-			%input.form-control.password{type: "password", name: "password", placeholder: "Password"}
-			%button.btn.btn-primary.btn-block{type: 'submit', disabled: ''} Login
-		%form.register{role: "form", action: "/register", method: "POST"}
-			%input.form-control.username{type: "text", name: "username", placeholder: "Username"}
-			%input.form-control.password{type: "password", name: "password", placeholder: "Password"}
-			%input.form-control.confirm-password{type: "password", name: "passwordConfirmation", placeholder: "Confirm password"}
-			%button.btn.btn-primary.btn-block{type: 'submit', disabled: ''} Register
-		%form.anonymous{role: "form"}
-			%input.form-control.username{type: "text", name: "name", placeholder: "Pick a name"}
-			%button.btn.btn-primary.btn-block{type: 'submit', disabled: ''} Start playing
+  .panel-heading 
+    %h3.panel-title.lead Enter Snaketron
+  .panel-body
+    %a.fb-button{href: '/auth/facebook/'}
+      %img{src: '/images/fbButton.png'}
+    .hr
+      .label OR
+    .list-group.manual-login
+      %a.list-group-item.small{"data-authtype" => "login"}
+        %span.glyphicon.glyphicon-ok
+        Login
+      %a.list-group-item.small{"data-authtype" => "register"}
+        %span.glyphicon.glyphicon-ok
+        Register
+      %a.list-group-item.small{"data-authtype" => "anonymous"}
+        %span.glyphicon.glyphicon-ok
+        Play anonymously
+    %form.login{role: "form", action: "/login", method: "POST"}
+      %input.form-control.username{type: "text", name: "username", placeholder: "Username"}
+      %input.form-control.password{type: "password", name: "password", placeholder: "Password"}
+      %button.btn.btn-primary.btn-block{type: 'submit', disabled: ''} Login
+    %form.register{role: "form", action: "/register", method: "POST"}
+      %input.form-control.username{type: "text", name: "username", placeholder: "Username"}
+      %input.form-control.password{type: "password", name: "password", placeholder: "Password"}
+      %input.form-control.confirm-password{type: "password", name: "passwordConfirmation", placeholder: "Confirm password"}
+      %button.btn.btn-primary.btn-block{type: 'submit', disabled: ''} Register
+    %form.anonymous{role: "form"}
+      %input.form-control.username{type: "text", name: "name", placeholder: "Pick a name"}
+      %button.btn.btn-primary.btn-block{type: 'submit', disabled: ''} Start playing

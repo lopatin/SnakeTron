@@ -4,7 +4,7 @@
       <div class='col-md-8'>
         <div class='row'>
           <div class='col-md-6'>
-            <div class='btn btn-primary btn-lg btn-block'>
+            <div class='btn btn-primary btn-lg btn-block quick-play'>
               Quick Play
               <div class='description'>
                 Instantly play against a random opponent

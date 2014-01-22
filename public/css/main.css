@@ -3,14 +3,109 @@ body {
   color: #333333; }
   body a {
     cursor: pointer; }
-  body .content {
-    padding: 20px 0; }
+  body .application .content {
+    position: fixed;
+    top: 80px;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    padding: 20px 0;
+    overflow: auto;
+    transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    opacity: 1; }
+    body .application .content._hidden {
+      opacity: 0; }
+  body .application .game {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; }
+    body .application .game .game-wrapper {
+      transition: opacity 0.5s;
+      -moz-transition: opacity 0.5s;
+      -webkit-transition: opacity 0.5s;
+      -o-transition: opacity 0.5s; }
+      body .application .game .game-wrapper._hidden {
+        opacity: 0; }
+      body .application .game .game-wrapper .waiting {
+        margin-top: 30%;
+        text-align: center;
+        display: none;
+        transition: opacity 0.2s;
+        -moz-transition: opacity 0.2s;
+        -webkit-transition: opacity 0.2s;
+        -o-transition: opacity 0.2s; }
+        body .application .game .game-wrapper .waiting._hidden {
+          opacity: 0; }
+        body .application .game .game-wrapper .waiting.slow {
+          transition: opacity 0.8s;
+          -moz-transition: opacity 0.8s;
+          -webkit-transition: opacity 0.8s;
+          -o-transition: opacity 0.8s; }
+        body .application .game .game-wrapper .waiting .waiting-indicator {
+          width: 100px;
+          height: 116px;
+          margin: 0 auto;
+          background-image: url("/images/snake.png");
+          background-repeat: no-repeat;
+          background-size: 100%;
+          margin-bottom: 10px; }
+      body .application .game .game-wrapper .stage {
+        display: none; }
+      body .application .game .game-wrapper .results {
+        display: none;
+        width: 500px;
+        height: 600px;
+        background-color: #333333;
+        margin: 0 auto;
+        margin-top: 30%; }
+  body .scoreboard-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: top 0.5s;
+    -moz-transition: top 0.5s;
+    -webkit-transition: top 0.5s;
+    -o-transition: top 0.5s; }
+    body .scoreboard-wrapper._hidden {
+      top: -50px; }
+    body .scoreboard-wrapper .scoreboard {
+      border-left: 1px solid #333333;
+      border-right: 1px solid #333333;
+      border-bottom: 1px solid #333333;
+      min-width: 600px;
+      box-shadow: inset -5px -5px 0 #eaeaea;
+      margin: 0 auto;
+      box-sizing: border-box;
+      display: table; }
+      body .scoreboard-wrapper .scoreboard .logo {
+        width: 155px;
+        height: 24px;
+        padding: 11px 11px 14px 11px;
+        box-sizing: content-box;
+        border-right: 1px solid #bbbbbb;
+        box-shadow: 2px 0 0 white, inset 2px 0 white; }
   body .header {
     border-bottom: 1px solid #333333;
     box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.08);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
     height: 80px;
     box-sizing: border-box;
-    font-style: italic; }
+    font-style: italic;
+    transition: top 0.5s;
+    -moz-transition: top 0.5s;
+    -webkit-transition: top 0.5s;
+    -o-transition: top 0.5s; }
+    body .header._hidden {
+      top: -80px; }
     body .header a.logo {
       background-image: url("/images/SnaketronLogo@2x.png");
       background-repeat: no-repeat;
@@ -43,6 +138,21 @@ body {
           box-shadow: inset 0 -4px 0 #cccccc; }
         body .header ul.navigation li .selected {
           box-shadow: inset 0 -4px 0 #333333; }
+  body .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.08);
+    border-top: 1px solid #333333;
+    background-color: white;
+    transition: bottom 0.5s;
+    -moz-transition: bottom 0.5s;
+    -webkit-transition: bottom 0.5s;
+    -o-transition: bottom 0.5s; }
+    body .footer._hidden {
+      bottom: -80px; }
   body #Marketing p.lead {
     margin-bottom: 10px; }
   body #Marketing ul.feature-list {

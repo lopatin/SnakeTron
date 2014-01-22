@@ -47,6 +47,8 @@
     "passport-facebook": "~1.0.2",
     "session.socket.io": "~0.1.6",
     "connect-redis": "~1.4.6",
-    "bcrypt": "~0.7.7"
+    "bcrypt": "~0.7.7",
+    "node-uuid": "~1.4.1",
+    "backbone": "~1.1.0"
   }
 }

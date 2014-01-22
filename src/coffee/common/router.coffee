@@ -7,4 +7,5 @@ define [
       'instructions': 'instructions'
       'leaderboards': 'leaderboards'
       'logout': 'logout'
+      'play': 'play'
       '*splat': 'index'

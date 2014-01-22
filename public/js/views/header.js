@@ -10,6 +10,12 @@
       select: function(name) {
         this.$el.find('.navigation li a').removeClass('selected');
         return this.$el.find('.navigation li a.' + name).addClass('selected');
+      },
+      hide: function() {
+        return this.$el.addClass('_hidden');
+      },
+      show: function() {
+        return this.$el.removeClass('_hidden');
       }
     });
   });

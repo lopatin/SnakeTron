@@ -12,6 +12,8 @@ define [
 		constructor: () ->
 			@_bindApiMethods()
 			@players = new PlayerManager()
+			@matches = {}
+			@queuedMatches = []
 			setInterval @_emitPlayerCounts.bind(this), 2000
 
 		socketConnected: (socket, user) ->
@@ -61,6 +63,20 @@ define [
 
 			getUser: (args) ->
 				return args.user
-		
+
+			requestQuickMatch: (args) ->
+				player = @players.get args.user.id
+				if @queuedMatches.length
+					match = @queuedMatches[0]
+					match.addPlayer player
+					if match.isReadyToStart()
+						@queuedMatches.shift()
+						match.start()
+				else
+					match = new Match(2)
+					match.addPlayer player
+					@queuedMatches.push match
+					@matches[match.getId()] = match
+				return match.getId()
 
 	return new Snaketron()

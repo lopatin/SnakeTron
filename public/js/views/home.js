@@ -4,10 +4,16 @@
 
     return HomeView = Backbone.View.extend({
       initialize: function() {},
+      events: {
+        'click .btn.quick-play': 'quickPlayClicked'
+      },
       render: function() {
         return this.$el.html(homeTemplate({
           name: app.getUser().name
         }));
+      },
+      quickPlayClicked: function() {
+        return app.requestQuickMatch();
       }
     });
   });

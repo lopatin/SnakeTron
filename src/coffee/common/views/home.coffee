@@ -8,7 +8,13 @@ define [
   HomeView = Backbone.View.extend
     initialize: ->
 
+    events: 
+      'click .btn.quick-play': 'quickPlayClicked'
+
     render: ->
       @$el.html homeTemplate({
         name: app.getUser().name
         })
+
+    quickPlayClicked: ->
+      app.requestQuickMatch()

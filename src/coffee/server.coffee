@@ -40,7 +40,7 @@ requirejs [
       app.use express.static __dirname+'/public'
 
     server = http.createServer app
-    server.listen 8080
+    server.listen 8083
 
     # Socket.io websocket server
     io = socketio.listen server

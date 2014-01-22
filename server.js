@@ -34,7 +34,7 @@
       return app.use(express["static"](__dirname + '/public'));
     });
     server = http.createServer(app);
-    server.listen(8080);
+    server.listen(8083);
     io = socketio.listen(server);
     sessionSockets = new SessionSockets(io, sessionStore, cookieParser);
     sessionSockets.on('connection', function(err, socket, session) {
